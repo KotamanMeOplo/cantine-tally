@@ -31,6 +31,11 @@ class MyAppBar extends Component {
     tallyOpen: false
   });
 
+  handleChoiceClicked = page => {
+    this.handleDrawerClose();
+    this.props.handlePageChange(page);
+  }
+
   toggleExpandable = expandable => {
     const closedExpandables = Object.keys(this.state).filter(a => a !== 'drawerOpen' && a !== expandable + 'Open');
     
@@ -44,13 +49,13 @@ class MyAppBar extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <AppBar position="static" color="primary">
+        <AppBar position="fixed" color="primary">
           <Toolbar>          
             <IconButton color="inherit" aria-label="Open Drawer" onClick={this.handleDrawerOpen}>
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit">
-              ΚΨΜ
+              {this.props.page}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -62,10 +67,15 @@ class MyAppBar extends Component {
         >
           <div className={classes.list}>
             <div className={classes.drawerHeader}>
-              ΚΨΜ
+              <Typography variant="h6">
+                Βοηθός - ΚΨΜ
+              </Typography>
             </div>
             <Divider />
             <List>
+              <ListItem button onClick={_ => this.handleChoiceClicked('Αρχική')}>
+                  <ListItemText primary="Αρχική" />
+              </ListItem>
               <ListItem button onClick={_ => this.toggleExpandable('setUp')}>
                 <ListItemText primary="Set Up" />
                 {this.state.setUpOpen ? <ExpandLess /> : <ExpandMore />}
@@ -73,7 +83,7 @@ class MyAppBar extends Component {
               <Collapse in={this.state.setUpOpen}>
                 <List>
                   {['Προϊόντα', 'Χρεώστες'].map(a => (
-                    <ListItem button key={a}>
+                    <ListItem button key={a} onClick={_ => this.handleChoiceClicked('Set Up > ' + a)}>
                       <ListItemText inset primary={a} />
                     </ListItem>
                   ))}
@@ -86,13 +96,13 @@ class MyAppBar extends Component {
               <Collapse in={this.state.tallyOpen}>
                 <List>
                   {['Προϊόντα', 'Χρωστημιά', 'Ταμείο'].map(a => (
-                    <ListItem button key={a}>
+                    <ListItem button key={a} onClick={_ => this.handleChoiceClicked('Καταμέτρηση > ' + a)}>
                       <ListItemText inset primary={a} />
                     </ListItem>
                   ))}
                 </List>
               </Collapse>
-              <ListItem button>
+              <ListItem button onClick={_ => this.handleChoiceClicked('Χρέωση')}>
                   <ListItemText primary="Χρέωση" />
               </ListItem>
             </List>
