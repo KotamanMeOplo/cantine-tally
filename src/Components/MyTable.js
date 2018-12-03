@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, TableHead, TableBody, TableCell, TableRow, TextField } from '@material-ui/core';
+import { Table, TableHead, TableBody, TableCell, TableRow, Menu, MenuItem } from '@material-ui/core';
 import roundNumToNumOfDecimals from '../helpers';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -17,16 +17,22 @@ const styles = {
 };
 
 class MyTable extends Component {
-  state = {};
+  state = {
+    anchorEl: null
+  };
 
-  handleChange = (e, field) => {
-    this.setState({
-      [field]: e.target.value
-    });
+  handleMenuClose = _ => {
+    this.setState({anchorEl: null});
   }
   
+  handleRightClick = e => {
+    e.preventDefault();
+    this.setState({anchorEl: e.currentTarget});
+  }
+
   render() {
     const { fields, data, classes } = this.props;
+    const { anchorEl } = this.state;
 
     return (
       <div>
@@ -37,22 +43,8 @@ class MyTable extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {/* <TableRow>
-              {fields.map((a, i) => (
-                <TableCell className={[classes.cell, classes.txtFieldCell]}>
-                  <TextField
-                    className={classes.txtField}
-                    fullWidth={true}
-                    label={a.field}
-                    value={this.state[a.prop]}
-                    onChange={e => this.handleChange(e, [a.prop])}
-                    />
-                  </TableCell>
-              ))}
-            </TableRow> */}
-
             {data.map((item, i) => (
-              <TableRow key={i}>
+              <TableRow key={i} onContextMenu={e => this.handleRightClick(e)}>
                 {
                   fields.map((field, j) => (
                   <TableCell className={classes.cell} key={j}>
@@ -62,6 +54,13 @@ class MyTable extends Component {
                 }
               </TableRow>
             ))}
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={this.handleMenuClose}
+            >
+              <MenuItem>Kota</MenuItem>
+            </Menu>
           </TableBody>
         </Table>
       </div>
