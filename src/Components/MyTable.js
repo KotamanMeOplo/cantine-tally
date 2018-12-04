@@ -56,6 +56,8 @@ class MyTable extends Component {
             ))}
             <Menu
               anchorEl={anchorEl}
+              anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
+              getContentAnchorEl={null}
               open={Boolean(anchorEl)}
               onClose={this.handleMenuClose}
             >

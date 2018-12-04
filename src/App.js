@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import MyAppBar from './Components/MyAppBar';
 import HomePage from './Components/Pages/HomePage';
 import SetUpPage from './Components/Pages/SetUpPage';
+import TallyProductPage from './Components/Pages/TallyProductPage';
 
 class App extends Component {
   state = {
-    displayingPage: 'Set Up > Προϊόντα',
+    displayingPage: 'Καταμέτρηση > Προϊόντα',
     products: [
       {
         name: 'Νερό',
@@ -95,6 +96,12 @@ class App extends Component {
               fields={setUpOwersFields}
               data={this.state.owers}
               handleNewSetUpItem={ower => this.handleNewOwer(ower)}
+            />
+        }
+        {
+          this.state.displayingPage === 'Καταμέτρηση > Προϊόντα' &&
+            <TallyProductPage
+              products={this.state.products}
             />
         }
       </div>

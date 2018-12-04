@@ -15,13 +15,6 @@ const styles = {
 };
 
 class SetUpPage extends Component {
-  state = {
-    dialogOpen: false
-  };
-  
-  handleDialogOpen = () => this.setState({dialogOpen: true});
-  handleDialogClose = () => this.setState({dialogOpen: false});
-  
   render() {
     const { classes } = this.props;
     return (
