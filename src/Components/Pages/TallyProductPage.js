@@ -78,6 +78,8 @@ class TallyProductPage extends Component {
             Submit
           </Button>
         </form>
+
+        {/* <MyTable fields={this.props.fields} data={this.props.data} /> */}
       </div>
     );
   }

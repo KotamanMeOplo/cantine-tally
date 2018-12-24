@@ -9,9 +9,9 @@ const styles = {
   },
   paper: {
     position: 'absolute',
+    width: '20rem',
     zIndex: 1,
-    left: 0,
-    right: 0
+    left: 'calc(50% - 10rem)'
   }
 };
 
@@ -20,7 +20,7 @@ class Autocomplete extends Component {
     txt: ''
   };
 
-  handleChange = e => this.setState({txt: e.target.value});
+  // handleChange = e => this.setState({txt: e.target.value});
 
   handleDownshiftChange = selection => {
     this.setState({txt: selection.name, selectedItem: selection.name});
@@ -28,7 +28,7 @@ class Autocomplete extends Component {
   }
 
   render() {
-    const { classes, suggestions } = this.props;
+    const { classes, suggestions, label, value } = this.props;
     const { txt } = this.state;
     
     return (
@@ -48,17 +48,17 @@ class Autocomplete extends Component {
           <div>
             <TextField
               {...getInputProps({
-                value: txt,
-                onChange: this.handleChange,
+                value: value,
+                onChange: e => this.props.handleChange(e),
                 InputLabelProps: {shrink: true}
               })}
-              label='Προϊόν'
+              label={label}
               className={classes.txtFields}
             />
             <Paper className={classes.paper} {...getMenuProps()}>
               {isOpen
                 ? suggestions
-                    .filter(item => !inputValue || item.name.includes(inputValue))
+                    .filter(item => inputValue && item.name.includes(inputValue))
                     .map((item, index) => (
                       <MenuItem
                         {...getItemProps({

@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import MyAppBar from './Components/MyAppBar';
 import HomePage from './Components/Pages/HomePage';
-import SetUpPage from './Components/Pages/SetUpPage';
-import TallyProductPage from './Components/Pages/TallyProductPage';
+import {
+  setUpProductsFields,
+  setUpOwersFields,
+  tallyProductsFields,
+  tallyOwersFields,
+  tallyCashFields,
+  cashMeasurementUnitSuggestions
+} from './helpers';
+import Page from './Components/Pages/Page';
 
 class App extends Component {
   state = {
     displayingPage: 'Καταμέτρηση > Προϊόντα',
-    products: [
+    setUpProducts: [
       {
         name: 'Νερό',
         buyPrice: 0.20,
@@ -24,7 +31,7 @@ class App extends Component {
         sellPrice: .8
       }
     ],
-    owers: [
+    setUpOwers: [
       {
         name: 'Λοχαγός'
       },
@@ -34,74 +41,70 @@ class App extends Component {
       {
         name: 'Ζαχαρίας'
       }
-    ]
+    ],
+    tallyProducts: [],
+    tallyOwers: [],
+    tallyCash: []
   }
 
   pageChangeHandler = page => this.setState({displayingPage: page});
 
-  handleNewProduct = product => {
+  handleNewItem = (item, field) => {
+    console.log(item, field)
     this.setState({
-      products: [...this.state.products, product]
-    });
-  }
-
-  handleNewOwer = ower => {
-    this.setState({
-      owers: [...this.state.owers, ower]
+      [field]: [...this.state[field], item]
     });
   }
   
   render() {
-    const setUpProductsFields = [
-      {
-        shouldRound: false,
-        prop: 'name',
-        field: 'Προϊόν'
-      },
-      {
-        shouldRound: true,
-        prop: 'buyPrice',
-        field: 'Τιμή Αγοράς'
-      },
-      {
-        shouldRound: true,
-        prop: 'sellPrice',
-        field: 'Τιμή Πώλησης'
-      }
-    ];
-
-    const setUpOwersFields = [
-      {
-        field: 'Χρεώστης',
-        prop: 'name',
-        shouldRound: false
-      }
-    ];
-
     return (
       <div className="App">
         <MyAppBar page={this.state.displayingPage} handlePageChange={this.pageChangeHandler} />
         {this.state.displayingPage === 'Αρχική' && <HomePage />}
         {
           this.state.displayingPage === 'Set Up > Προϊόντα' && 
-            <SetUpPage
+            <Page
               fields={setUpProductsFields}
-              data={this.state.products}
-              handleNewSetUpItem={item => this.handleNewProduct(item)}
+              items={this.state.setUpProducts}
+              handleNewItem={item => this.handleNewItem(item, 'setUpProducts')}
             />
         }
         {
           this.state.displayingPage === 'Set Up > Χρεώστες' &&
-            <SetUpPage
+            <Page
               fields={setUpOwersFields}
-              data={this.state.owers}
-              handleNewSetUpItem={ower => this.handleNewOwer(ower)}
+              items={this.state.setUpOwers}
+              handleNewItem={item => this.handleNewItem(item, 'setUpOwers')}
             />
         }
         {
           this.state.displayingPage === 'Καταμέτρηση > Προϊόντα' &&
-            <TallyProductPage
-              products={this.state.products}
+            <Page
+              fields={tallyProductsFields}
+              itemSuggestions={this.state.setUpProducts}
+              items={this.state.tallyProducts}
+              handleNewItem={item => this.handleNewItem(item, 'tallyProducts')}
+              totalField='total'
+            />
+        }
+        {
+          this.state.displayingPage === 'Καταμέτρηση > Χρωστημιά' &&
+            <Page
+              fields={tallyOwersFields}
+              itemSuggestions={this.state.setUpOwers}
+              items={this.state.tallyOwers}
+              handleNewItem={item => this.handleNewItem(item, 'tallyOwers')}
+              totalField='amount'
+            />
+        }
+        {
+          this.state.displayingPage === 'Καταμέτρηση > Ταμείο' &&
+            <Page
+              fields={tallyCashFields}
+              itemSuggestions={cashMeasurementUnitSuggestions}
+              items={this.state.tallyCash}
+              handleNewItem={item => this.handleNewItem(item, 'tallyCash')}
+              totalField='amount'
             />
         }
       </div>
