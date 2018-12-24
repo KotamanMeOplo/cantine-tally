@@ -52,7 +52,7 @@ export const tallyProductsFields = [
   },
   {
     shouldRound: true,
-    prop: 'sellPrice',
+    prop: 'buyPrice',
     field: 'Τιμή',
     autocomplete: false,
     acDependant: true,
@@ -66,7 +66,7 @@ export const tallyProductsFields = [
     autocomplete: false,
     acDependant: false,
     systemFilled: true,
-    fillingFunc: item => item.sellPrice * item.amount
+    fillingFunc: item => item.buyPrice * item.amount
   }
 ];
 
