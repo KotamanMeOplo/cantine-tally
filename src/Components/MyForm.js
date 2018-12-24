@@ -28,7 +28,9 @@ const stateAssignment = fields => {
 class MyForm extends Component {
   state = stateAssignment(this.props.fields);
 
-  handleTxtChange = (e, field) => this.setState({[field]: e.target.value,});
+  handleTxtChange = (e, field) => this.setState({
+    [field.prop]: field.number ? parseInt(e.target.value) : e.target.value,
+  });
 
   handleItemSelection = item => {
     const obj = {};
@@ -53,6 +55,7 @@ class MyForm extends Component {
     if(errors.length > 0) {
       errors.forEach(a => alert(a));
     } else {
+
       const systemFilledField = this.props.fields.filter(a => a.systemFilled)[0];
       const obj = systemFilledField ? {[systemFilledField.prop]: systemFilledField.fillingFunc(this.state)} : {};
       this.props.handleSubmit(Object.assign(obj, this.state));
@@ -78,7 +81,7 @@ class MyForm extends Component {
                     label={a.field}
                     suggestions={itemSuggestions}
                     value={this.state[a.prop]}
-                    handleChange={e => this.handleTxtChange(e, a.prop)}
+                    handleChange={e => this.handleTxtChange(e, a)}
                     onChange={item => this.handleItemSelection(item)}
                   />
                   <br />
@@ -91,7 +94,7 @@ class MyForm extends Component {
                     className={[classes.txtFields, classes.formChildren].join(' ')}
                     label={a.field}
                     value={this.state[a.prop]}
-                    onChange={e => this.handleTxtChange(e, a.prop)}
+                    onChange={e => this.handleTxtChange(e, a)}
                     InputLabelProps={{shrink: true}}
                     disabled={a.acDependant ? true : false}
                     type={a.number ? 'number' : 'string'}
