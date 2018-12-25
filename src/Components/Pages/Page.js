@@ -20,7 +20,7 @@ const styles = {
 
 class Page extends Component {  
   render() {
-    const { classes, fields, itemSuggestions, items, totalField } = this.props;
+    const { classes, fields, itemSuggestions, items, totalField, handleItemDeletion } = this.props;
 
     return (
       <div className={classes.core}>
@@ -33,6 +33,7 @@ class Page extends Component {
           fields={fields}
           items={items}
           totalField={totalField}
+          handleItemDeletion={item => handleItemDeletion(item)}
         />
       </div>
     );

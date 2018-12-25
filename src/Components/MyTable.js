@@ -17,40 +17,40 @@ class MyTable extends Component {
       x: 0,
       y: 0
     },
-    menuOpen: false
+    targetItem: null
   };
 
-  handleMenuClose = _ => {
-    console.log(this.state.mousePosition)
-    this.setState({
-      mousePosition: {
-        x: 0,
-        y: 0
-      }
-    });
-  }
+  handleMenuClose = _ => this.setState({targetItem: null});
   
-  handleRightClick = e => {
+  handleRightClick = (e, item) => {
     e.preventDefault();
 
     this.setState({
       mousePosition: {
         x: e.clientX,
         y: e.clientY
-      }
+      },
+      targetItem: item
     });
+  }
+
+  handleItemDeletion = (item) => {
+    this.props.handleItemDeletion(item);
+    this.handleMenuClose();
   }
 
   render() {
     let { fields, items, classes, totalField } = this.props;
-    const { mousePosition } = this.state;
+    const { targetItem, mousePosition } = this.state;
 
-    const total = items.reduce((pr, cur) => {
-      console.log(cur, pr);
-      return pr + cur[totalField]
-    }, 0);
-    console.log(total);
-    items= [...items, {name: 'Σύνολο', [totalField]: total}];
+    if(totalField && items.length !== 0) {
+      const total = items.reduce((pr, cur) => {
+        console.log(cur, pr);
+        return pr + cur[totalField]
+      }, 0);
+      console.log(total);
+      items= [...items, {name: 'Σύνολο', [totalField]: total}];
+    }
 
     return (
       <div>
@@ -62,7 +62,7 @@ class MyTable extends Component {
           </TableHead>
           <TableBody>
             {items.map((item, i) => (
-              <TableRow key={i} onContextMenu={e => this.handleRightClick(e)}>
+              <TableRow key={i} onContextMenu={e => this.handleRightClick(e, item)}>
                 {
                   fields.map((field, j) => {
                     let contents = item[field.prop];
@@ -84,10 +84,10 @@ class MyTable extends Component {
               anchorPosition={{left: mousePosition.x, top: mousePosition.y}}
               anchorReference='anchorPosition'
               getContentAnchorEl={null}
-              open={mousePosition.x + mousePosition.y !== 0}
+              open={Boolean(targetItem)}
               onClose={this.handleMenuClose}
             >
-              <MenuItem><DeleteIcon />Διαγραφή</MenuItem>
+              <MenuItem onClick={_ => this.handleItemDeletion(targetItem)}><DeleteIcon />Διαγραφή</MenuItem>
               <MenuItem><EditIcon />Αλλαγή</MenuItem>
             </Menu>
           </TableBody>

@@ -55,6 +55,13 @@ class App extends Component {
       [field]: [...this.state[field], item]
     });
   }
+
+  handleItemDeletion = (item, field) => {
+    const index = this.state[field].indexOf(item);
+    this.setState({
+      [field]: [...this.state[field].slice(0, index), ...this.state[field].slice(index + 1, this.state[field].length)]
+    })
+  }
   
   render() {
     return (
@@ -67,6 +74,7 @@ class App extends Component {
               fields={setUpProductsFields}
               items={this.state.setUpProducts}
               handleNewItem={item => this.handleNewItem(item, 'setUpProducts')}
+              handleItemDeletion={item => this.handleItemDeletion(item, 'setUpProducts')}
             />
         }
         {
@@ -75,6 +83,7 @@ class App extends Component {
               fields={setUpOwersFields}
               items={this.state.setUpOwers}
               handleNewItem={item => this.handleNewItem(item, 'setUpOwers')}
+              handleItemDeletion={item => this.handleItemDeletion(item, 'setUpOwers')}
             />
         }
         {
@@ -84,6 +93,7 @@ class App extends Component {
               itemSuggestions={this.state.setUpProducts}
               items={this.state.tallyProducts}
               handleNewItem={item => this.handleNewItem(item, 'tallyProducts')}
+              handleItemDeletion={item => this.handleItemDeletion(item, 'tallyProducts')}
               totalField='total'
             />
         }
@@ -94,6 +104,7 @@ class App extends Component {
               itemSuggestions={this.state.setUpOwers}
               items={this.state.tallyOwers}
               handleNewItem={item => this.handleNewItem(item, 'tallyOwers')}
+              handleItemDeletion={item => this.handleItemDeletion(item, 'tallyOwers')}
               totalField='amount'
             />
         }
@@ -104,6 +115,7 @@ class App extends Component {
               itemSuggestions={cashMeasurementUnitSuggestions}
               items={this.state.tallyCash}
               handleNewItem={item => this.handleNewItem(item, 'tallyCash')}
+              handleItemDeletion={item => this.handleItemDeletion(item, 'tallyCash')}
               totalField='amount'
             />
         }
