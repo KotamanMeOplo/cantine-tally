@@ -19,13 +19,15 @@ export const setUpProductsFields = [
     shouldRound: true,
     prop: 'buyPrice',
     field: 'Τιμή Αγοράς',
-    number: true
+    number: true,
+    numberStep: .01
   },
   {
     shouldRound: true,
     prop: 'sellPrice',
     field: 'Τιμή Πώλησης',
-    number: true
+    number: true,
+    numberStep: .01
   }
 ];
 
@@ -51,7 +53,8 @@ export const tallyProductsFields = [
     field: 'Ποσότητα',
     autocomplete: false,
     acDependant: false,
-    number: true
+    number: true,
+    numberStep: 1
   },
   {
     shouldRound: true,
@@ -59,7 +62,8 @@ export const tallyProductsFields = [
     field: 'Τιμή',
     autocomplete: false,
     acDependant: true,
-    number: true
+    number: true,
+    numberStep: .01
   },
   {
     shouldRound: true,
@@ -86,7 +90,8 @@ export const tallyOwersFields = [
     field: 'Ποσό',
     autocomplete: false,
     acDependant: false,
-    number: true
+    number: true,
+    numberStep: .01
   }
 ]
 
@@ -104,7 +109,8 @@ export const tallyCashFields = [
     field: 'Ποσό',
     autocomplete: false,
     acDependant: false,
-    number: true
+    number: true,
+    numberStep: .01
   }
 ];
 

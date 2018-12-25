@@ -10,6 +10,7 @@ import {
   cashMeasurementUnitSuggestions
 } from './helpers';
 import Page from './Components/Pages/Page';
+import TallyResultPage from './Components/Pages/TallyResultPage';
 
 class App extends Component {
   state = {
@@ -118,6 +119,15 @@ class App extends Component {
               handleNewItem={item => this.handleNewItem(item, 'tallyCash')}
               handleItemDeletion={item => this.handleItemDeletion(item, 'tallyCash')}
               totalField='amount'
+            />
+        }
+        {
+          this.state.displayingPage === 'Καταμέτρηση > Αποτέλεσμα' &&
+            <TallyResultPage
+              tables={['Προϊόντα', 'Χρωστημιά', 'Ταμείο']}
+              fields={[tallyProductsFields, tallyOwersFields, tallyCashFields]}
+              items={[this.state.tallyProducts, this.state.tallyOwers, this.state.tallyCash]}
+              totalFields={['total', 'amount', 'amount']}
             />
         }
         {

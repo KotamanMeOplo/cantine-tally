@@ -37,7 +37,7 @@ class MyForm extends Component {
   }
 
   handleTxtChange = (e, field) => this.setState({
-    [field.prop]: field.number ? parseInt(e.target.value) : e.target.value,
+    [field.prop]: e.target.value,
   });
 
   handleItemSelection = item => {
@@ -65,8 +65,16 @@ class MyForm extends Component {
     } else {
 
       const systemFilledField = this.props.fields.filter(a => a.systemFilled)[0];
-      const obj = systemFilledField ? {[systemFilledField.prop]: systemFilledField.fillingFunc(this.state)} : {};
-      this.props.handleSubmit(Object.assign(obj, this.state));
+      let obj = systemFilledField ? {[systemFilledField.prop]: systemFilledField.fillingFunc(this.state)} : {};
+      Object.assign(obj, this.state);
+      console.log(obj);
+      this.props.fields.forEach(a => {
+        if(a.number) {
+          obj[a.prop] = parseFloat(obj[a.prop]);
+        }
+      });
+      console.log(obj);
+      this.props.handleSubmit(obj);
 
       Object.keys(this.state).forEach(a => this.setState({[a]: ''}));
     }
