@@ -1,6 +1,14 @@
 export const roundNumToNumOfDecimals = (num, decimal) => parseFloat(Math.round(num * 100) / 100).toFixed(decimal);
 
+//  Properties and their jobs
+
 //  shouldRound indicates wether the value needs to be cast to a 2 decimal float or not
+//  autocomplete indicates that the field needs an autocomplete text field instead of a normal one
+//  acDependant indicates that the field will be filled automatically based on the autocomplete field
+//  systemFilled indicates that the field will be filled automatically usind math based on other fields
+//  fillingFunc is the function that will be used to get the value of the field if its systemFilled
+//  number indicates wether the type of input should be number for the current field
+
 export const setUpProductsFields = [
   {
     shouldRound: false,
@@ -11,15 +19,13 @@ export const setUpProductsFields = [
     shouldRound: true,
     prop: 'buyPrice',
     field: 'Τιμή Αγοράς',
-    number: true,
-    numberStep: .001
+    number: true
   },
   {
     shouldRound: true,
     prop: 'sellPrice',
     field: 'Τιμή Πώλησης',
-    number: true,
-    numberStep: .001
+    number: true
   }
 ];
 
@@ -31,8 +37,6 @@ export const setUpOwersFields = [
   }
 ];
 
-//  autocomplete indicates that the field needs an autocomplete text field instead of a normal one
-//  acDependant indicates that the field will be filled automatically based on the autocomplete field
 export const tallyProductsFields = [
   {
     shouldRound: false,
@@ -47,8 +51,7 @@ export const tallyProductsFields = [
     field: 'Ποσότητα',
     autocomplete: false,
     acDependant: false,
-    number: true,
-    numberStep: 1
+    number: true
   },
   {
     shouldRound: true,
@@ -56,8 +59,7 @@ export const tallyProductsFields = [
     field: 'Τιμή',
     autocomplete: false,
     acDependant: true,
-    number: true,
-    numberStep: .001
+    number: true
   },
   {
     shouldRound: true,
@@ -84,8 +86,7 @@ export const tallyOwersFields = [
     field: 'Ποσό',
     autocomplete: false,
     acDependant: false,
-    number: true,
-    numberStep: .001
+    number: true
   }
 ]
 
@@ -103,8 +104,7 @@ export const tallyCashFields = [
     field: 'Ποσό',
     autocomplete: false,
     acDependant: false,
-    number: true,
-    numberStep: .001
+    number: true
   }
 ];
 

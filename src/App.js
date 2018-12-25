@@ -44,7 +44,8 @@ class App extends Component {
     ],
     tallyProducts: [],
     tallyOwers: [],
-    tallyCash: []
+    tallyCash: [],
+    supplyProducts: []
   }
 
   pageChangeHandler = page => this.setState({displayingPage: page});
@@ -117,6 +118,17 @@ class App extends Component {
               handleNewItem={item => this.handleNewItem(item, 'tallyCash')}
               handleItemDeletion={item => this.handleItemDeletion(item, 'tallyCash')}
               totalField='amount'
+            />
+        }
+        {
+          this.state.displayingPage === 'Χρέωση' &&
+            <Page
+              fields={tallyProductsFields}
+              itemSuggestions={this.state.setUpProducts}
+              items={this.state.supplyProducts}
+              handleNewItem={item => this.handleNewItem(item, 'supplyProducts')}
+              handleItemDeletion={item => this.handleItemDeletion(item, 'supplyProducts')}
+              totalField='total'
             />
         }
       </div>
