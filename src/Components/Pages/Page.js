@@ -18,9 +18,18 @@ const styles = {
   }
 };
 
-class Page extends Component {  
+class Page extends Component {
+  state = {
+    itemToEdit: null
+  };
+  
+  handleItemEdit = item => {
+    this.setState({itemToEdit: item});
+  }
+  
   render() {
     const { classes, fields, itemSuggestions, items, totalField, handleItemDeletion } = this.props;
+    const { itemToEdit } = this.state;
 
     return (
       <div className={classes.core}>
@@ -28,12 +37,14 @@ class Page extends Component {
           fields={fields}
           itemSuggestions={itemSuggestions}
           handleSubmit={newItem => this.props.handleNewItem(newItem)}
+          defaultItem={itemToEdit}
         />
         <MyTable
           fields={fields}
           items={items}
           totalField={totalField}
           handleItemDeletion={item => handleItemDeletion(item)}
+          handleItemEdit={item => this.handleItemEdit(item)}
         />
       </div>
     );

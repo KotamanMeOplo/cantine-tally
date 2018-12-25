@@ -15,11 +15,11 @@ const styles = {
   }
 };
 
-const stateAssignment = fields => {
+const stateAssignment = (fields, item) => {
   const obj = {};
   fields.forEach(a => {
     if(!a.systemFilled)
-      obj[a.prop] = '';
+      obj[a.prop] = item ? item[a.prop] : '';
   });
 
   return obj;
@@ -27,6 +27,14 @@ const stateAssignment = fields => {
 
 class MyForm extends Component {
   state = stateAssignment(this.props.fields);
+
+  componentWillReceiveProps = nextProps => {
+    if(this.props.defaultItem !== nextProps.defaultItem) {
+      const obj = stateAssignment(this.props.fields, nextProps.defaultItem);
+      this.setState(obj);
+    }
+    console.log(this.props.defaultItem, nextProps.defaultItem, this.props.defaultItem !== nextProps.defaultItem)
+  }
 
   handleTxtChange = (e, field) => this.setState({
     [field.prop]: field.number ? parseInt(e.target.value) : e.target.value,
@@ -47,7 +55,7 @@ class MyForm extends Component {
     let errors = [];
 
     for (let i in this.state) {
-      if(!this.state[i]) {
+      if(!this.state[i] && i !== 'defaultItem') {
         errors.push('Ένα πεδίο έχει μείνει άδειο.');
       }
     }

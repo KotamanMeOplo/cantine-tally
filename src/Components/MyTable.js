@@ -39,6 +39,11 @@ class MyTable extends Component {
     this.handleMenuClose();
   }
 
+  handleEditClick = (item) => {
+    this.props.handleItemEdit(item);
+    this.handleItemDeletion(item);
+  }
+
   render() {
     let { fields, items, classes, totalField } = this.props;
     const { targetItem, mousePosition } = this.state;
@@ -88,7 +93,7 @@ class MyTable extends Component {
               onClose={this.handleMenuClose}
             >
               <MenuItem onClick={_ => this.handleItemDeletion(targetItem)}><DeleteIcon />Διαγραφή</MenuItem>
-              <MenuItem><EditIcon />Αλλαγή</MenuItem>
+              <MenuItem onClick={_ => this.handleEditClick(targetItem)}><EditIcon />Αλλαγή</MenuItem>
             </Menu>
           </TableBody>
         </Table>
