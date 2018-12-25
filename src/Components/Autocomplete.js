@@ -20,21 +20,18 @@ class Autocomplete extends Component {
     txt: ''
   };
 
-  // handleChange = e => this.setState({txt: e.target.value});
-
   handleDownshiftChange = selection => {
-    this.setState({txt: selection.name, selectedItem: selection.name});
+    this.setState({selectedItem: selection.name});
     this.props.onChange(selection);
   }
 
   render() {
     const { classes, suggestions, label, value } = this.props;
-    const { txt } = this.state;
     
     return (
       <Downshift
-        onChange={selection => this.handleDownshiftChange(selection)}
-        itemToString={item => (item ? item.name : '')}
+        onSelect={selection => this.handleDownshiftChange(selection)}
+        itemToString={item => (item.name)}
       >
         {({
           getInputProps,
