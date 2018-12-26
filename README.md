@@ -1,44 +1,19 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Βοηθός ΚΨΜ
+### Ένα εργαλείο το οποίο θα σας σώσει χρόνο στις καταμετρήσεις αλλά και τις χρεώσεις
 
-## Available Scripts
+Οι καταμετρήσεις είναι κάτι το οποίο ο κάθε ΚΨΜτζης θα χρειαστεί να εκτελέσει πάμπολλες φορές κατά την όλη διάρκεια της θητείας του. Η παρούσα εφαρμογή δημιουργήθηκε με σκοπό την μείωση του χρόνου και του κόπου που αναλόνωνται κατά την εκτέλεση μιας καταμέτρησης.
 
-In the project directory, you can run:
+## Set Up
 
-### `npm start`
+Το μόνο βήμα που πρέπει να εκτελεστεί προτού να αρχίσετε νά χρησιμοποιήτε τον Βοηθό είναι να καταγράψετε τα άτομα που χρωστάνε(Χρεώστες) και τα προϊόντα που υπάρχουν στο ΚΨΜ μαζί με τις τιμές πώλησης και αγοράς τους. Αυτό μπορείτε να το κάνετε στις 2 σελίδες υπό την πινακίδα Set Up
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Καταμέτρηση
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
++ __Προϊόντα:__ Εισάγετε τα προϊόντα και την ποσότητα τους και ο Βοηθός θα υπολογίσει αυτόματα το συνολικό ποσό
++ __Χρωστημιά:__ Εισάγετε το ποσό το οποίο χρωστά ο κάθε Χρεώστης και ο Βοηθός θα υπολογίσει αυτόματα το συνολικό Χρέος
++ __Ταμείο:__ Εισάγετε το ποσό που περιέχει το ταμείο σας ανά μονάδα μέτρησης (Μετρητά, 2 ευρώ, 1 ευρώ, 50 σεντ, 20 σεντ, 10 σεντ, 5 σεντ, 2 σεντ και 1 σεντ).
++ __Αποτέλεσμα:__ Το αποτέλεσμα τις καταμέτρησης. Ο βοηθός θα σας παρουσιάσει το Γενικό Σύνολο όπως επείσης και καθένα από τα παραπάνω παραρτήματα αναλυτικά και μαζί με τα σύνολα τους.
 
-### `npm test`
+## Χρέωση
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Απλώς εισάγετε τα προϊόντα που χρεώνεστε μαζί με την ποσότητα τους. Ο Βοηθός και πάλι θα υπολογίσει το Συνολικό κόστος.

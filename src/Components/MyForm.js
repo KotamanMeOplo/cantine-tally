@@ -128,7 +128,7 @@ class MyForm extends Component {
           color='primary'
           onClick={this.handleSubmit}
         >
-          Submit
+          ΥΠΟΒΟΛΗ
         </Button>
       </form>
     );
