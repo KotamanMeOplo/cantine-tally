@@ -2,19 +2,17 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import MyForm from '../MyForm';
 import MyTable from '../MyTable';
+import { Button } from '@material-ui/core';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 
 const styles = {
   core: {
-    padding: '5rem 0 5rem 0'
-  },
-  form: {
+    padding: '5rem 0 5rem 0',
     textAlign: 'center'
   },
-  txtFields: {
-    width: '20rem'
-  },
-  formChildren: {
-    margin: '.5rem'
+  buttons: {
+    margin: '1rem'
   }
 };
 
@@ -28,7 +26,7 @@ class Page extends Component {
   }
   
   render() {
-    const { classes, fields, itemSuggestions, items, totalField, handleItemDeletion } = this.props;
+    const { classes, fields, itemSuggestions, items, totalField, handleItemDeletion, nextButton, backButton } = this.props;
     const { itemToEdit } = this.state;
 
     return (
@@ -46,6 +44,26 @@ class Page extends Component {
           handleItemDeletion={item => handleItemDeletion(item)}
           handleItemEdit={item => this.handleItemEdit(item)}
         />
+        {backButton &&
+          <Button
+            variant='contained'
+            color='secondary'
+            className={classes.buttons}
+            onClick={_ => this.props.onChangePage(-1)}
+          >
+            <ChevronLeftIcon />
+          </Button>
+        }
+        {nextButton &&
+          <Button
+            variant='contained'
+            color='secondary'
+            className={classes.buttons}
+            onClick={_ => this.props.onChangePage(1)}
+          >
+            <ChevronRightIcon />
+          </Button>
+        }
       </div>
     );
   }

@@ -49,7 +49,22 @@ class App extends Component {
     supplyProducts: []
   }
 
-  pageChangeHandler = page => this.setState({displayingPage: page});
+  pageChangeHandler = (page, direction) => {
+    if(page) {
+      this.setState({displayingPage: page});
+    } else {
+      const pages = [
+        'Set Up > Προϊόντα',
+        'Set Up > Χρεώστες',
+        'Καταμέτρηση > Προϊόντα',
+        'Καταμέτρηση > Χρωστημιά',
+        'Καταμέτρηση > Ταμείο',
+        'Καταμέτρηση > Αποτέλεσμα'
+      ];
+      const newIndex = pages.indexOf(this.state.displayingPage) + direction;
+      this.setState({displayingPage: pages[newIndex]});
+    }
+  }
 
   handleNewItem = (item, field) => {
     console.log(item, field)
@@ -77,6 +92,8 @@ class App extends Component {
               items={this.state.setUpProducts}
               handleNewItem={item => this.handleNewItem(item, 'setUpProducts')}
               handleItemDeletion={item => this.handleItemDeletion(item, 'setUpProducts')}
+              onChangePage={dir => this.pageChangeHandler(null, dir)}
+              nextButton={true}
             />
         }
         {
@@ -86,6 +103,8 @@ class App extends Component {
               items={this.state.setUpOwers}
               handleNewItem={item => this.handleNewItem(item, 'setUpOwers')}
               handleItemDeletion={item => this.handleItemDeletion(item, 'setUpOwers')}
+              onChangePage={dir => this.pageChangeHandler(null, dir)}
+              backButton={true}
             />
         }
         {
@@ -97,6 +116,8 @@ class App extends Component {
               handleNewItem={item => this.handleNewItem(item, 'tallyProducts')}
               handleItemDeletion={item => this.handleItemDeletion(item, 'tallyProducts')}
               totalField='total'
+              onChangePage={dir => this.pageChangeHandler(null, dir)}
+              nextButton={true}
             />
         }
         {
@@ -108,6 +129,9 @@ class App extends Component {
               handleNewItem={item => this.handleNewItem(item, 'tallyOwers')}
               handleItemDeletion={item => this.handleItemDeletion(item, 'tallyOwers')}
               totalField='amount'
+              onChangePage={dir => this.pageChangeHandler(null, dir)}
+              nextButton={true}
+              backButton={true}
             />
         }
         {
@@ -119,6 +143,9 @@ class App extends Component {
               handleNewItem={item => this.handleNewItem(item, 'tallyCash')}
               handleItemDeletion={item => this.handleItemDeletion(item, 'tallyCash')}
               totalField='amount'
+              onChangePage={dir => this.pageChangeHandler(null, dir)}
+              nextButton={true}
+              backButton={true}
             />
         }
         {
@@ -128,6 +155,7 @@ class App extends Component {
               fields={[tallyProductsFields, tallyOwersFields, tallyCashFields]}
               items={[this.state.tallyProducts, this.state.tallyOwers, this.state.tallyCash]}
               totalFields={['total', 'amount', 'amount']}
+              onChangePage={dir => this.pageChangeHandler(null, dir)}
             />
         }
         {

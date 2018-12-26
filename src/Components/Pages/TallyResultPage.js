@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import MyTable from '../MyTable';
-import { Typography } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
 import { roundNumToNumOfDecimals } from '../../helpers';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 const styles = {
   core: {
@@ -10,6 +11,10 @@ const styles = {
   },
   divChildren: {
     margin: '3rem 2rem 0 2rem'
+  },
+  buttonContainer: {
+    textAlign: 'center',
+    padding: '1rem'
   }
 };
 
@@ -35,6 +40,16 @@ class TallyResultPage extends Component {
             />
           </div>
         )}
+        
+        <div className={classes.buttonContainer}>
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={_ => this.props.onChangePage(-1)}
+          >
+            <ChevronLeftIcon />
+          </Button>
+        </div>
       </div>
     );
   }
