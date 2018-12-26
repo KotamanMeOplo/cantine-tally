@@ -48,7 +48,7 @@ class MyTable extends Component {
     let { fields, items, classes, totalField } = this.props;
     const { targetItem, mousePosition } = this.state;
 
-    if(totalField && items.length !== 0) {
+    if(totalField) {
       const total = items.reduce((pr, cur) => {
         console.log(cur, pr);
         return pr + cur[totalField]
@@ -62,7 +62,14 @@ class MyTable extends Component {
         <Table>
           <TableHead>
             <TableRow>
-              {fields.map((a, i) => <TableCell key={i} padding='dense'>{a.field}</TableCell>)}
+              {fields.map((a, i) => 
+                <TableCell
+                  key={i}
+                  padding='dense'
+                >
+                  {a.field}
+                </TableCell>
+              )}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -77,7 +84,11 @@ class MyTable extends Component {
                     }
 
                     return (
-                      <TableCell className={classes.cell} key={j} padding='dense'>
+                      <TableCell
+                        className={items.length !== i + 1 && classes.cell}
+                        key={j}
+                        padding='dense'
+                      >
                         {contents}
                       </TableCell>
                     )

@@ -14,7 +14,7 @@ import TallyResultPage from './Components/Pages/TallyResultPage';
 
 class App extends Component {
   state = {
-    displayingPage: 'Καταμέτρηση > Προϊόντα',
+    displayingPage: 'Καταμέτρηση > Αποτέλεσμα',
     setUpProducts: [
       {
         name: 'Νερό',

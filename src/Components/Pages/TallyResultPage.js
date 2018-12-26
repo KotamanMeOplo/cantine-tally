@@ -8,14 +8,8 @@ const styles = {
   core: {
     padding: '5rem 0 5rem 0'
   },
-  form: {
-    textAlign: 'center'
-  },
-  txtFields: {
-    width: '20rem'
-  },
-  formChildren: {
-    margin: '.5rem'
+  divChildren: {
+    margin: '3rem 2rem 0 2rem'
   }
 };
 
@@ -26,12 +20,14 @@ class TallyResultPage extends Component {
     const total = items.reduce((pr1, cur1, i1) => pr1 + cur1.reduce((pr2, cur2) => pr2 + cur2[totalFields[i1]], 0), 0);
     return (
       <div className={classes.core}>
-        <Typography variant="h4">
+        <Typography variant="h4" className={classes.divChildren}>
           Γενικό Σύνολο: €{roundNumToNumOfDecimals(total, 2)}
         </Typography>
         {tables.map((curTable, i) =>
           <div key={i}>
-            <Typography variant="h5">{curTable}</Typography>
+            <Typography variant="h5" className={classes.divChildren}>
+              {curTable}
+            </Typography>
             <MyTable
               fields={fields[i]}
               items={items[i]}
