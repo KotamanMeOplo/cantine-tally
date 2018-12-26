@@ -36,6 +36,7 @@ class Page extends Component {
           itemSuggestions={itemSuggestions}
           handleSubmit={newItem => this.props.handleNewItem(newItem)}
           defaultItem={itemToEdit}
+          alreadySelectedItems={items}
         />
         <MyTable
           fields={fields}

@@ -49,11 +49,7 @@ class MyTable extends Component {
     const { targetItem, mousePosition } = this.state;
 
     if(totalField) {
-      const total = items.reduce((pr, cur) => {
-        console.log(cur, pr);
-        return pr + cur[totalField]
-      }, 0);
-      console.log(total);
+      const total = items.reduce((pr, cur) => pr + cur[totalField], 0);
       items= [...items, {name: 'Σύνολο', [totalField]: total}];
     }
 
@@ -85,7 +81,7 @@ class MyTable extends Component {
 
                     return (
                       <TableCell
-                        className={items.length !== i + 1 && classes.cell}
+                        className={items.length !== i + 1 ? classes.cell : ''}
                         key={j}
                         padding='dense'
                       >

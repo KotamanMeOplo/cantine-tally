@@ -8,6 +8,7 @@ export const roundNumToNumOfDecimals = (num, decimal) => parseFloat(Math.round(n
 //  systemFilled indicates that the field will be filled automatically usind math based on other fields
 //  fillingFunc is the function that will be used to get the value of the field if its systemFilled
 //  number indicates wether the type of input should be number for the current field
+//  numberStep sets the step field of an input
 
 export const setUpProductsFields = [
   {

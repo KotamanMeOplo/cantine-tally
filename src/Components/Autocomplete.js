@@ -16,10 +16,6 @@ const styles = {
 };
 
 class Autocomplete extends Component {
-  state = {
-    txt: ''
-  };
-
   handleDownshiftChange = selection => {
     this.setState({selectedItem: selection.name});
     this.props.onChange(selection);
@@ -31,7 +27,7 @@ class Autocomplete extends Component {
     return (
       <Downshift
         onSelect={selection => this.handleDownshiftChange(selection)}
-        itemToString={item => (item.name)}
+        itemToString={item => (item ? item.name : '')}
       >
         {({
           getInputProps,

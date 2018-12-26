@@ -6,11 +6,6 @@ import MyForm from '../MyForm';
 const styles = {
   core: {
     padding: '5rem 0 5rem 0'
-  },
-  fab: {
-    position: 'fixed',
-    right: '1rem',
-    bottom: '2rem'
   }
 };
 

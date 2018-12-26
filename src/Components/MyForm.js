@@ -33,7 +33,6 @@ class MyForm extends Component {
       const obj = stateAssignment(this.props.fields, nextProps.defaultItem);
       this.setState(obj);
     }
-    console.log(this.props.defaultItem, nextProps.defaultItem, this.props.defaultItem !== nextProps.defaultItem)
   }
 
   handleTxtChange = (e, field) => this.setState({
@@ -67,13 +66,11 @@ class MyForm extends Component {
       const systemFilledField = this.props.fields.filter(a => a.systemFilled)[0];
       let obj = systemFilledField ? {[systemFilledField.prop]: systemFilledField.fillingFunc(this.state)} : {};
       Object.assign(obj, this.state);
-      console.log(obj);
       this.props.fields.forEach(a => {
         if(a.number) {
           obj[a.prop] = parseFloat(obj[a.prop]);
         }
       });
-      console.log(obj);
       this.props.handleSubmit(obj);
 
       Object.keys(this.state).forEach(a => this.setState({[a]: ''}));
@@ -81,14 +78,18 @@ class MyForm extends Component {
   }
 
   render() {
-    const { fields, classes, itemSuggestions } = this.props;
+    const { fields, classes, alreadySelectedItems } = this.props;
+    let { itemSuggestions } = this.props;
+    if(alreadySelectedItems && itemSuggestions) {
+      itemSuggestions = itemSuggestions.filter(a => alreadySelectedItems.filter(b => b.name === a.name).length === 0);
+    }
 
     return (
       <form className={classes.form}>
         {
           fields.map((a, i) => {
             if(a.systemFilled){
-              return;
+              return null;
             }
             if(a.autocomplete) {
               return (

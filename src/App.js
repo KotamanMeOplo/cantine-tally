@@ -14,35 +14,9 @@ import TallyResultPage from './Components/Pages/TallyResultPage';
 
 class App extends Component {
   state = {
-    displayingPage: 'Καταμέτρηση > Αποτέλεσμα',
-    setUpProducts: [
-      {
-        name: 'Νερό',
-        buyPrice: 0.20,
-        sellPrice: .2
-      },
-      {
-        name: 'Τριάρα',
-        buyPrice: 2.05,
-        sellPrice: 2.2
-      },
-      {
-        name: 'Aero',
-        buyPrice: 0.70,
-        sellPrice: .8
-      }
-    ],
-    setUpOwers: [
-      {
-        name: 'Λοχαγός'
-      },
-      {
-        name: 'Μονάδα'
-      },
-      {
-        name: 'Ζαχαρίας'
-      }
-    ],
+    displayingPage: 'Αρχική',
+    setUpProducts: [],
+    setUpOwers: [],
     tallyProducts: [],
     tallyOwers: [],
     tallyCash: [],
@@ -67,7 +41,6 @@ class App extends Component {
   }
 
   handleNewItem = (item, field) => {
-    console.log(item, field)
     this.setState({
       [field]: [...this.state[field], item]
     });
