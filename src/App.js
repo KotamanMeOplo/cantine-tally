@@ -78,12 +78,10 @@ class App extends Component {
     const _setUpProducts = localStorage.getItem('setUpProducts');
     const _setUpOwers = localStorage.getItem('setUpOwers');
 
-    if(_setUpOwers || _setUpProducts) {
-      this.setState({
-        setUpOwers: JSON.parse(_setUpOwers),
-        setUpProducts: JSON.parse(_setUpProducts)
-      });
-    }
+    this.setState({
+      setUpOwers: _setUpOwers ? JSON.parse(_setUpOwers) : [],
+      setUpProducts: _setUpProducts ? JSON.parse(_setUpProducts) : []
+    });
   }
   
   render() {
