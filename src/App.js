@@ -52,6 +52,15 @@ class App extends Component {
       [field]: [...this.state[field].slice(0, index), ...this.state[field].slice(index + 1, this.state[field].length)]
     })
   }
+
+  clearTallyHandler = _ => {
+    this.setState({
+      tallyProducts: [],
+      tallyOwers: [],
+      tallyCash: [],
+      displayingPage: 'Καταμέτρηση > Προϊόντα',
+    });
+  }
   
   render() {
     return (
@@ -129,6 +138,7 @@ class App extends Component {
               items={[this.state.tallyProducts, this.state.tallyOwers, this.state.tallyCash]}
               totalFields={['total', 'amount', 'amount']}
               onChangePage={dir => this.pageChangeHandler(null, dir)}
+              onClearTally={this.clearTallyHandler}
             />
         }
         {

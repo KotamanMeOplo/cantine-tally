@@ -4,6 +4,7 @@ import MyTable from '../MyTable';
 import { Typography, Button } from '@material-ui/core';
 import { roundNumToNumOfDecimals } from '../../helpers';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = {
   core: {
@@ -15,6 +16,9 @@ const styles = {
   buttonContainer: {
     textAlign: 'center',
     padding: '1rem'
+  },
+  buttons: {
+    margin: '.5rem'
   }
 };
 
@@ -43,11 +47,22 @@ class TallyResultPage extends Component {
         
         <div className={classes.buttonContainer}>
           <Button
+            className={classes.buttons}
             variant='contained'
             color='secondary'
             onClick={_ => this.props.onChangePage(-1)}
           >
             <ChevronLeftIcon />
+          </Button>
+          <br />
+          <Button
+            className={classes.buttons}
+            variant='contained'
+            color='secondary'
+            onClick={this.props.onClearTally}
+          >
+            <DeleteIcon />
+            ΜΗΔΕΝΙΣΜΟΣ ΚΑΤΑΜΕΤΡΗΣΗΣ
           </Button>
         </div>
       </div>
