@@ -22,13 +22,6 @@ export const setUpProductsFields = [
     field: 'Τιμή Αγοράς',
     number: true,
     numberStep: .01
-  },
-  {
-    shouldRound: true,
-    prop: 'sellPrice',
-    field: 'Τιμή Πώλησης',
-    number: true,
-    numberStep: .01
   }
 ];
 
