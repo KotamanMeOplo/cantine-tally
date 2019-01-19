@@ -41,15 +41,27 @@ class App extends Component {
   }
 
   handleNewItem = (item, field) => {
+    const newValue = [...this.state[field], item];
+
+    if(field === 'setUpOwers' || field === 'setUpProducts') {
+      localStorage.setItem(field, JSON.stringify(newValue));
+    }
+
     this.setState({
-      [field]: [...this.state[field], item]
+      [field]: newValue
     });
   }
 
   handleItemDeletion = (item, field) => {
     const index = this.state[field].indexOf(item);
+    const newValue = [...this.state[field].slice(0, index), ...this.state[field].slice(index + 1, this.state[field].length)];
+
+    if(field === 'setUpOwers' || field === 'setUpProducts') {
+        localStorage.setItem(field, JSON.stringify(newValue));
+      }
+      
     this.setState({
-      [field]: [...this.state[field].slice(0, index), ...this.state[field].slice(index + 1, this.state[field].length)]
+      [field]: newValue
     })
   }
 
@@ -60,6 +72,18 @@ class App extends Component {
       tallyCash: [],
       displayingPage: 'Καταμέτρηση > Προϊόντα',
     });
+  }
+
+  componentWillMount = _ => {
+    const _setUpProducts = localStorage.getItem('setUpProducts');
+    const _setUpOwers = localStorage.getItem('setUpOwers');
+
+    if(_setUpOwers || _setUpProducts) {
+      this.setState({
+        setUpOwers: JSON.parse(_setUpOwers),
+        setUpProducts: JSON.parse(_setUpProducts)
+      });
+    }
   }
   
   render() {
