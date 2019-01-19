@@ -1,9 +1,15 @@
 {
   "short_name": "Βοηθός ΚΨΜ",
   "name": "Βοηθός ΚΨΜ, καταμετρήσεις και χρεώσεις",
-  "icons": [],
-  "start_url": ".",
+  "icons": [
+    {
+      "src": "image144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#3f51b5",
+  "background_color": "#3f51b5"
 }
