@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core';
 import Autocomplete from './Autocomplete';
@@ -50,7 +50,9 @@ class MyForm extends Component {
     this.setState(obj);
   }
 
-  handleSubmit = _ => {
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log('submitted');
     let errors = [];
 
     for (let i in this.state) {
@@ -85,7 +87,7 @@ class MyForm extends Component {
     }
 
     return (
-      <form className={classes.form}>
+      <form className={classes.form} onSubmit={this.handleSubmit}>
         {
           fields.map((a, i) => {
             if(a.systemFilled){
@@ -93,7 +95,7 @@ class MyForm extends Component {
             }
             if(a.autocomplete) {
               return (
-                <div key={i}>
+                <Fragment key={i}>
                   <Autocomplete
                     label={a.field}
                     suggestions={itemSuggestions}
@@ -102,11 +104,11 @@ class MyForm extends Component {
                     onChange={item => this.handleItemSelection(item)}
                   />
                   <br />
-                </div>
+                </Fragment>
               );
             } else {
               return (
-                <div key={i}>
+                <Fragment key={i}>
                   <TextField
                     className={[classes.txtFields, classes.formChildren].join(' ')}
                     label={a.field}
@@ -118,7 +120,7 @@ class MyForm extends Component {
                     InputProps={a.number && {step: a.numberStep}}
                   />
                   <br />
-                </div>
+                </Fragment>
               );
             }
           })
