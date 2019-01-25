@@ -94,6 +94,7 @@ class MyTable extends Component {
             ))}
             <Menu
               anchorPosition={{left: mousePosition.x, top: mousePosition.y}}
+              transformOrigin={{horizontal: 'center', vertical: 'bottom'}}
               anchorReference='anchorPosition'
               getContentAnchorEl={null}
               open={Boolean(targetItem)}
