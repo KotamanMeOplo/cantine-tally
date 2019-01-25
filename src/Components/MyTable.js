@@ -61,13 +61,12 @@ class MyTable extends Component {
 
     return (
       <div>
-        <Table>
+        <Table padding="checkbox">
           <TableHead>
             <TableRow>
               {fields.map((a, i) => 
                 <TableCell
                   key={i}
-                  padding='dense'
                 >
                   {a.field}
                 </TableCell>
@@ -89,7 +88,6 @@ class MyTable extends Component {
                       <TableCell
                         className={items.length !== i + 1 ? classes.cell : ''}
                         key={j}
-                        padding='dense'
                       >
                         {contents}
                       </TableCell>
