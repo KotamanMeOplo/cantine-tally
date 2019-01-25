@@ -126,6 +126,7 @@ class MyForm extends Component {
           })
         }
         <Button
+          type='submit'
           className={classes.formChildren}
           variant='contained'
           color='primary'
