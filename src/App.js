@@ -43,6 +43,10 @@ class App extends Component {
   handleNewItem = (item, field) => {
     const newValue = [...this.state[field], item];
 
+    if(field === 'tallyOwers') {
+      newValue.sort((a, b) => b.amount - a.amount);
+    }
+
     if(field === 'setUpOwers' || field === 'setUpProducts') {
       localStorage.setItem(field, JSON.stringify(newValue));
     }
