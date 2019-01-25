@@ -35,17 +35,23 @@ class MyTable extends Component {
   }
 
   handleItemDeletion = (item) => {
-    this.props.handleItemDeletion(item);
+    if(item.name !== 'Σύνολο') {
+      this.props.handleItemDeletion(item);
+    } else {
+      alert('Όχι το σύνολο είναι χρήσιμο και δεν θα το αλλάξεις εσύ αυτό! ლ(▀̿̿Ĺ̯̿̿▀̿ლ)')
+    }
     this.handleMenuClose();
   }
 
   handleEditClick = (item) => {
-    this.props.handleItemEdit(item);
+    if(item.name !== 'Σύνολο') {
+      this.props.handleItemEdit(item);
+    }
     this.handleItemDeletion(item);
   }
 
   render() {
-    let { fields, items, classes, totalField } = this.props;
+    let { fields, items, classes, totalField, menu } = this.props;
     const { targetItem, mousePosition } = this.state;
 
     if(totalField) {
@@ -92,17 +98,19 @@ class MyTable extends Component {
                 }
               </TableRow>
             ))}
-            <Menu
-              anchorPosition={{left: mousePosition.x, top: mousePosition.y}}
-              transformOrigin={{horizontal: 'center', vertical: 'bottom'}}
-              anchorReference='anchorPosition'
-              getContentAnchorEl={null}
-              open={Boolean(targetItem)}
-              onClose={this.handleMenuClose}
-            >
-              <MenuItem onClick={_ => this.handleItemDeletion(targetItem)}><DeleteIcon />Διαγραφή</MenuItem>
-              <MenuItem onClick={_ => this.handleEditClick(targetItem)}><EditIcon />Αλλαγή</MenuItem>
-            </Menu>
+            {menu && 
+              <Menu
+                anchorPosition={{left: mousePosition.x, top: mousePosition.y}}
+                transformOrigin={{horizontal: 'center', vertical: 'bottom'}}
+                anchorReference='anchorPosition'
+                getContentAnchorEl={null}
+                open={Boolean(targetItem)}
+                onClose={this.handleMenuClose}
+              >
+                <MenuItem onClick={_ => this.handleItemDeletion(targetItem)}><DeleteIcon />Διαγραφή</MenuItem>
+                <MenuItem onClick={_ => this.handleEditClick(targetItem)}><EditIcon />Αλλαγή</MenuItem>
+              </Menu>
+            }
           </TableBody>
         </Table>
       </div>

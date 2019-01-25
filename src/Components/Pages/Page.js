@@ -44,6 +44,7 @@ class Page extends Component {
           totalField={totalField}
           handleItemDeletion={item => handleItemDeletion(item)}
           handleItemEdit={item => this.handleItemEdit(item)}
+          menu={true}
         />
         {backButton &&
           <Button
