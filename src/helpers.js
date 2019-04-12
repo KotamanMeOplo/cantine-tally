@@ -89,6 +89,50 @@ export const tallyOwersFields = [
   }
 ]
 
+export const owers8020Fields = [
+  {
+    shouldRound: false,
+    prop: 'index',
+    field: 'Ν/Α',
+    autocomplete: true,
+    acDependant: false
+  },
+  {
+    shouldRound: false,
+    prop: 'name',
+    field: 'Χρεώστης',
+    autocomplete: false,
+    acDependant: false
+  },
+  {
+    shouldRound: true,
+    prop: 'amount',
+    field: 'Ποσό',
+    autocomplete: false,
+    acDependant: false,
+    number: true,
+    numberStep: .01
+  },
+  {
+    shouldRound: true,
+    prop: 'percentage',
+    field: '%',
+    autocomplete: false,
+    acDependant: false,
+    number: true,
+    numberStep: .01
+  },
+  {
+    shouldRound: true,
+    prop: 'collectivePercentage',
+    field: 'Ποσό',
+    autocomplete: false,
+    acDependant: false,
+    number: true,
+    numberStep: .01
+  }
+]
+
 export const tallyCashFields = [
   {
     shouldRound: false,

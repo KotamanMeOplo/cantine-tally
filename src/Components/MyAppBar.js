@@ -95,7 +95,7 @@ class MyAppBar extends Component {
               </ListItem>
               <Collapse in={this.state.tallyOpen}>
                 <List>
-                  {['Προϊόντα', 'Χρωστημιά', 'Ταμείο', 'Αποτέλεσμα'].map(a => (
+                  {['Προϊόντα', 'Χρωστημιά', 'Ταμείο', 'Αποτέλεσμα', 'Κατανομή Pareto'].map(a => (
                     <ListItem button key={a} onClick={_ => this.handleChoiceClicked('Καταμέτρηση > ' + a)}>
                       <ListItemText inset primary={a} />
                     </ListItem>

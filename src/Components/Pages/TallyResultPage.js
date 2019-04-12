@@ -4,6 +4,7 @@ import MyTable from '../MyTable';
 import { Typography, Button } from '@material-ui/core';
 import { roundNumToNumOfDecimals } from '../../helpers';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = {
@@ -54,6 +55,14 @@ class TallyResultPage extends Component {
             onClick={_ => this.props.onChangePage(-1)}
           >
             <ChevronLeftIcon />
+          </Button>
+          <Button
+            className={classes.buttons}
+            variant='contained'
+            color='secondary'
+            onClick={_ => this.props.onChangePage(1)}
+          >
+            <ChevronRightIcon />
           </Button>
           <br />
           <Button

@@ -11,6 +11,7 @@ import {
 } from './helpers';
 import Page from './Components/Pages/Page';
 import TallyResultPage from './Components/Pages/TallyResultPage';
+import Tally8020Page from './Components/Pages/Tally8020Page';
 
 class App extends Component {
   state = {
@@ -24,6 +25,7 @@ class App extends Component {
   }
 
   pageChangeHandler = (page, direction) => {
+    console.log(page, direction)
     if(page) {
       this.setState({displayingPage: page});
     } else {
@@ -33,7 +35,8 @@ class App extends Component {
         'Καταμέτρηση > Προϊόντα',
         'Καταμέτρηση > Χρωστημιά',
         'Καταμέτρηση > Ταμείο',
-        'Καταμέτρηση > Αποτέλεσμα'
+        'Καταμέτρηση > Αποτέλεσμα',
+        'Καταμέτρηση > Κατανομή Pareto'
       ];
       const newIndex = pages.indexOf(this.state.displayingPage) + direction;
       this.setState({displayingPage: pages[newIndex]});
@@ -168,6 +171,14 @@ class App extends Component {
             />
         }
         {
+          this.state.displayingPage === 'Καταμέτρηση > Κατανομή Pareto' &&
+            <Tally8020Page
+              tallyOwers={this.state.tallyOwers}
+              setUpOwers={this.state.setUpOwers}
+              onChangePage={(page, dir) => this.pageChangeHandler(page, dir)}
+            />
+        }
+        {
           this.state.displayingPage === 'Χρέωση' &&
             <Page
               fields={tallyProductsFields}
@@ -176,6 +187,7 @@ class App extends Component {
               handleNewItem={item => this.handleNewItem(item, 'supplyProducts')}
               handleItemDeletion={item => this.handleItemDeletion(item, 'supplyProducts')}
               totalField='total'
+              onChangePage={dir => this.pageChangeHandler(null, dir)}
             />
         }
       </div>
