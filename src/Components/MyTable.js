@@ -46,6 +46,7 @@ class MyTable extends Component {
   handleEditClick = (item) => {
     if(item.name !== 'Σύνολο') {
       this.props.handleItemEdit(item);
+      window.scrollTo(0, 0);
     }
     this.handleItemDeletion(item);
   }

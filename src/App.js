@@ -39,6 +39,7 @@ class App extends Component {
       ];
       const newIndex = pages.indexOf(this.state.displayingPage) + direction;
       this.setState({displayingPage: pages[newIndex]});
+      window.scrollTo(0, 0);
     }
   }
 
