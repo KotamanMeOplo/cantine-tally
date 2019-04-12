@@ -72,7 +72,7 @@ class Tally8020Page extends Component {
       const owersPercentage = owerColletivePercentageClosestTo80.index * 100 / owers.length;
 
       // The text that will be shown under the heading of the page.
-      txt = `Συνολικό Χρέος: €${debtSum}\n
+      txt = `Συνολικό Χρέος: €${roundNumToNumOfDecimals(debtSum, 2)}\n
       Κατανομή Pareto: ${roundNumToNumOfDecimals(owerColletivePercentageClosestTo80.collectivePercentage, 0) || 0}/${roundNumToNumOfDecimals(owersPercentage, 0)}.\n
       ${owerColletivePercentageClosestTo80.index} άτομα χρωστάνε €${roundNumToNumOfDecimals(owerColletivePercentageClosestTo80.collectiveSum, 2)}`;
     } else {
