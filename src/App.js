@@ -25,7 +25,6 @@ class App extends Component {
   }
 
   pageChangeHandler = (page, direction) => {
-    console.log(page, direction)
     if(page) {
       this.setState({displayingPage: page});
     } else {

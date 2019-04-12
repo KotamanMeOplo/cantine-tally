@@ -52,7 +52,6 @@ class MyForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log('submitted');
     let errors = [];
 
     for (let i in this.state) {

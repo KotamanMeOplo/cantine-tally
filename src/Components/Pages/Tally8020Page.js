@@ -27,53 +27,58 @@ const styles = {
 class Tally8020Page extends Component {
   render() {
     const { classes, tallyOwers, setUpOwers } = this.props;
-    
-    const debtSum = tallyOwers.reduce((pre, cur) => pre + cur.amount, 0);
+    let items;
+    let txt;
+    let debtSum = 0;
 
-    const owersNotInTallyOwers = setUpOwers
-      .filter(a => tallyOwers.filter(b => b.name === a.name).length === 0)
-      .map(a => ({
-        name: a.name,
-        amount: 0
-      }));
-    const owers = tallyOwers.concat(owersNotInTallyOwers);
-    const items = owers.map((a, i) => {
-      a.index = i + 1;
-      
-      if(debtSum === 0) {
-        a.percentage = '-';
-        a.collectivePercentage = '-';
-      } else {
-        a.percentage = a.amount * 100 / debtSum;
+    if(setUpOwers.length > 0) {
+      debtSum = tallyOwers.reduce((pre, cur) => pre + cur.amount, 0);
 
-        if(i === 0) {
-          a.collectivePercentage = a.percentage;
-          a.collectiveSum = a.amount;
+      const owersNotInTallyOwers = setUpOwers
+        .filter(a => tallyOwers.filter(b => b.name === a.name).length === 0)
+        .map(a => ({
+          name: a.name,
+          amount: 0
+        }));
+      const owers = tallyOwers.concat(owersNotInTallyOwers);
+      items = owers.map((a, i) => {
+        a.index = i + 1;
+        
+        if(debtSum === 0) {
+          a.percentage = '-';
+          a.collectivePercentage = '-';
         } else {
-          a.collectivePercentage  = owers[i - 1].collectivePercentage + a.percentage;
-          a.collectiveSum  = owers[i - 1].collectiveSum + a.amount;
+          a.percentage = a.amount * 100 / debtSum;
+
+          if(i === 0) {
+            a.collectivePercentage = a.percentage;
+            a.collectiveSum = a.amount;
+          } else {
+            a.collectivePercentage  = owers[i - 1].collectivePercentage + a.percentage;
+            a.collectiveSum  = owers[i - 1].collectiveSum + a.amount;
+          }
         }
-      }
 
-      return a;
-    });
+        return a;
+      });
 
-    const owerColletivePercentageClosestTo80 = owers.reduce((pr, cur) => {
-      console.log(Math.abs(cur.collectivePercentage - 80) < Math.abs(pr.collectivePercentage - 80), Math.abs(pr.collectivePercentage - 80), Math.abs(cur.collectivePercentage - 80))
-      if(Math.abs(cur.collectivePercentage - 80) < Math.abs(pr.collectivePercentage - 80)) {
-        return cur;
-      } else {
-        console.log(pr, 'hey')
-        return pr;
-      }
-    });
-    console.log(owerColletivePercentageClosestTo80)
-    const owersPercentage = owerColletivePercentageClosestTo80.index * 100 / owers.length;
+      const owerColletivePercentageClosestTo80 = owers.reduce((pr, cur) => {
+        if(Math.abs(cur.collectivePercentage - 80) < Math.abs(pr.collectivePercentage - 80)) {
+          return cur;
+        } else {
+          return pr;
+        }
+      });
+      const owersPercentage = owerColletivePercentageClosestTo80.index * 100 / owers.length;
 
-    // The text that will be shown under the heading of the page.
-    const txt = `Συνολικό Χρέος: €${debtSum}\n
-    Κατανομή Pareto: ${roundNumToNumOfDecimals(owerColletivePercentageClosestTo80.collectivePercentage, 0) || 0}/${roundNumToNumOfDecimals(owersPercentage, 0)}.\n
-    ${owerColletivePercentageClosestTo80.index} άτομα χρωστάνε €${roundNumToNumOfDecimals(owerColletivePercentageClosestTo80.collectiveSum, 2)}`;
+      // The text that will be shown under the heading of the page.
+      txt = `Συνολικό Χρέος: €${debtSum}\n
+      Κατανομή Pareto: ${roundNumToNumOfDecimals(owerColletivePercentageClosestTo80.collectivePercentage, 0) || 0}/${roundNumToNumOfDecimals(owersPercentage, 0)}.\n
+      ${owerColletivePercentageClosestTo80.index} άτομα χρωστάνε €${roundNumToNumOfDecimals(owerColletivePercentageClosestTo80.collectiveSum, 2)}`;
+    } else {
+      items = [];
+      txt = '';
+    }
 
     return (
       <div className={classes.core}>
