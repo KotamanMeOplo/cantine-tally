@@ -42,7 +42,7 @@ class TallyResultPage extends Component {
               fields={fields[i]}
               items={items[i]}
               totalField={totalFields[i]}
-              menu={false}
+              dialog={false}
             />
           </div>
         )}

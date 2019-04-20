@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, TableHead, TableBody, TableCell, TableRow, Menu, MenuItem } from '@material-ui/core';
+import { Table, TableHead, TableBody, TableCell, TableRow, Dialog, DialogTitle, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { roundNumToNumOfDecimals } from '../helpers';
 import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -13,23 +13,15 @@ const styles = {
 
 class MyTable extends Component {
   state = {
-    mousePosition: {
-      x: 0,
-      y: 0
-    },
     targetItem: null
   };
 
-  handleMenuClose = _ => this.setState({targetItem: null});
+  handleDialogClose = _ => this.setState({targetItem: null});
   
   handleRightClick = (e, item) => {
     e.preventDefault();
 
     this.setState({
-      mousePosition: {
-        x: e.clientX,
-        y: e.clientY
-      },
       targetItem: item
     });
   }
@@ -40,7 +32,7 @@ class MyTable extends Component {
     } else {
       alert('Όχι το σύνολο είναι χρήσιμο και δεν θα το αλλάξεις εσύ αυτό! ლ(▀̿̿Ĺ̯̿̿▀̿ლ)')
     }
-    this.handleMenuClose();
+    this.handleDialogClose();
   }
 
   handleEditClick = (item) => {
@@ -52,8 +44,8 @@ class MyTable extends Component {
   }
 
   render() {
-    let { fields, items, classes, totalField, menu } = this.props;
-    const { targetItem, mousePosition } = this.state;
+    let { fields, items, classes, totalField, dialog } = this.props;
+    const { targetItem } = this.state;
 
     if(totalField) {
       const total = items.reduce((pr, cur) => pr + cur[totalField], 0);
@@ -97,18 +89,23 @@ class MyTable extends Component {
                 }
               </TableRow>
             ))}
-            {menu && 
-              <Menu
-                anchorPosition={{left: mousePosition.x, top: mousePosition.y}}
-                transformOrigin={{horizontal: 'center', vertical: 'bottom'}}
-                anchorReference='anchorPosition'
-                getContentAnchorEl={null}
+            {dialog && 
+              <Dialog
                 open={Boolean(targetItem)}
-                onClose={this.handleMenuClose}
+                onClose={this.handleDialogClose}
               >
-                <MenuItem onClick={_ => this.handleItemDeletion(targetItem)}><DeleteIcon />Διαγραφή</MenuItem>
-                <MenuItem onClick={_ => this.handleEditClick(targetItem)}><EditIcon />Αλλαγή</MenuItem>
-              </Menu>
+                <DialogTitle>Ενέργειες</DialogTitle>
+                  <List>
+                    <ListItem onClick={_ => this.handleItemDeletion(targetItem)} button>
+                      <ListItemIcon><DeleteIcon /></ListItemIcon>
+                      <ListItemText primary="Διαγραφή" />
+                    </ListItem>
+                    <ListItem onClick={_ => this.handleEditClick(targetItem)} button>
+                      <ListItemIcon><EditIcon /></ListItemIcon>
+                      <ListItemText primary="Αλλαγή" />
+                    </ListItem>
+                  </List>
+              </Dialog>
             }
           </TableBody>
         </Table>
