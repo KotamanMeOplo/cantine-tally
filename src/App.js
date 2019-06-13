@@ -16,7 +16,7 @@ import DataPage from './Components/Pages/DataPage';
 
 class App extends Component {
   state = {
-    displayingPage: 'Δεδομένα',
+    displayingPage: 'Αρχική',
     setUpProducts: [],
     setUpOwers: [],
     tallyProducts: [],
