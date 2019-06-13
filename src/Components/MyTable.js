@@ -53,7 +53,7 @@ class MyTable extends Component {
     }
 
     return (
-      <div>
+      <div className="table">
         <Table padding="checkbox">
           <TableHead>
             <TableRow>
