@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, ListItemText, Divider, Collapse } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, ListItemText, Divider, Collapse, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -76,6 +76,7 @@ class MyAppBar extends Component {
               <ListItem button onClick={_ => this.handleChoiceClicked('Αρχική')}>
                   <ListItemText primary="Αρχική" />
               </ListItem>
+
               <ListItem button onClick={_ => this.toggleExpandable('setUp')}>
                 <ListItemText primary="Set Up" />
                 {this.state.setUpOpen ? <ExpandLess /> : <ExpandMore />}
@@ -89,6 +90,7 @@ class MyAppBar extends Component {
                   ))}
                 </List>
               </Collapse>
+
               <ListItem button onClick={_ => this.toggleExpandable('tally')}>
                 <ListItemText primary="Καταμέτρηση" />
                 {this.state.tallyOpen ? <ExpandLess /> : <ExpandMore />}
@@ -102,8 +104,13 @@ class MyAppBar extends Component {
                   ))}
                 </List>
               </Collapse>
+
               <ListItem button onClick={_ => this.handleChoiceClicked('Χρέωση')}>
                   <ListItemText primary="Χρέωση" />
+              </ListItem>
+
+              <ListItem button onClick={_ => this.handleChoiceClicked('Δεδομένα')}>
+                  <ListItemText primary="Δεδομένα" />
               </ListItem>
             </List>
           </div>

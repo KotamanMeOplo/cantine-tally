@@ -12,10 +12,11 @@ import {
 import Page from './Components/Pages/Page';
 import TallyResultPage from './Components/Pages/TallyResultPage';
 import Tally8020Page from './Components/Pages/Tally8020Page';
+import DataPage from './Components/Pages/DataPage';
 
 class App extends Component {
   state = {
-    displayingPage: 'Αρχική',
+    displayingPage: 'Δεδομένα',
     setUpProducts: [],
     setUpOwers: [],
     tallyProducts: [],
@@ -189,6 +190,10 @@ class App extends Component {
               totalField='total'
               onChangePage={dir => this.pageChangeHandler(null, dir)}
             />
+        }
+        {
+          this.state.displayingPage === 'Δεδομένα' &&
+            <DataPage data={this.state}/>
         }
       </div>
     );
