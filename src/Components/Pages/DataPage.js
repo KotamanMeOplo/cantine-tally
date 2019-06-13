@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import { Button, Input } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 
 const styles = {
   core: {
     padding: '5rem 2rem 2rem 2rem'
-  },
-  topHeading: {
-    padding: '2rem 0 0 0'
   },
   subHeading: {
     margin: '1rem 0 2rem 0'
@@ -16,18 +13,26 @@ const styles = {
   heading: {
     margin: '2rem 0'
   },
-  text: {
-    margin: '1rem 0'
-  },
   code: {
     background: '#eee',
-    maxWidth: '100%',
-    padding: '1.6em'
+    padding: '1.6em',
+    overflowWrap: 'break-word',
+    lineHeight: '1.6',
+    fontFamily: 'source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace'
+  },
+  input: {
+    width: '100%',
+    marginBottom: '.5rem'
   }
 };
 
 class DataPage extends Component {
-  
+  state = {
+    input: ''
+  };
+
+  handleChange = e => this.setState({input: e.target.value});
+
   render() {
     const { classes, data } = this.props;
     return (
@@ -45,9 +50,9 @@ class DataPage extends Component {
         <Typography variant="subtitle1">
           Αντιγράψτε τα πιο κάτω δεδομένα και στείλτε τα στο άτομο που επιθυμείτε να τα αποκτήσει.
         </Typography>
-        <pre className={classes.code}>
+        <div className={classes.code}>
           {JSON.stringify(data)}
-        </pre>
+        </div>
 
         <Typography variant="h4" className={classes.subHeading}>
           Είσοδος
@@ -55,7 +60,15 @@ class DataPage extends Component {
         <Typography variant="subtitle1">
           Επικολλήστε πιο κάτω τα δεδομένα που θέλετε να εισάγετε στον οδηγό.
         </Typography>
-        <Input placeholder="Δεδομένα"/>
+        <TextField
+          label="Δεδομένα"
+          onChange={this.handleChange}
+          value={this.state.input}
+          className={classes.input}
+        />
+        <Button variant="outlined" color="primary" onClick={_ => this.props.handleClick(this.state.input)}>
+          ΕΙΣΑΓΩΓΗ
+        </Button>
       </div>
     );
   }

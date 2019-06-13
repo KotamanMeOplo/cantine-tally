@@ -82,6 +82,29 @@ class App extends Component {
     });
   }
 
+  handleDataInput = data => {
+    const isDataCorrect = data => {
+      let isJson = true;
+
+      try {
+        JSON.parse(data);
+      } catch(e) {
+        isJson = false;
+      }
+
+      return isJson;
+    }
+
+    if(isDataCorrect(data)) {
+      data = JSON.parse(data);
+      data.displayingPage = 'Set Up > Προϊόντα';
+
+      this.setState(data);
+    } else {
+      alert('Τα δεδομένα που εισάγατε έχουν κάποιο λάθος. Ξανακοιτάξτε αν εισάγατε τα σωστά δεδομένα.')
+    }
+  }
+
   componentWillMount = _ => {
     const _setUpProducts = localStorage.getItem('setUpProducts');
     const _setUpOwers = localStorage.getItem('setUpOwers');
@@ -193,7 +216,10 @@ class App extends Component {
         }
         {
           this.state.displayingPage === 'Δεδομένα' &&
-            <DataPage data={this.state}/>
+            <DataPage
+              data={this.state}
+              handleClick={this.handleDataInput}
+            />
         }
       </div>
     );
