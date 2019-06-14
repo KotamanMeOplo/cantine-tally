@@ -40,9 +40,6 @@ class DataPage extends Component {
         <Typography variant="h2" className={classes.heading}>
           Δεδομένα
         </Typography>
-        <Typography variant="subtitle1">
-          Ένας ΚΨΜτζης έχει εισάγει ήδη όλα τα προϊόντα και χρεώστες του ΚΨΜ του και ένας άλλος ΚΨΜτζης αρχίζει να χρεισημοποιά τον βοηθό, ο 1ος ΚΨΜτζης μπορεί να αποστείλει μερικά δεδομένα στον 2ο έτσι όστε να αποκτήσει και ο 2ος τα προϊόντα και χρεώστες του 1ου.
-        </Typography>
 
         <Typography variant="h4" className={classes.subHeading}>
           Έξοδος
