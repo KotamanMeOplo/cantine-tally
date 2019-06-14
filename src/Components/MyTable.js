@@ -35,6 +35,11 @@ class MyTable extends Component {
     this.handleDialogClose();
   }
 
+  handleDeletionAll = () => {
+    this.props.handleDeletionAll();
+    this.handleDialogClose();
+  }
+
   handleEditClick = (item) => {
     if(item.name !== 'Σύνολο') {
       this.props.handleItemEdit(item);
@@ -103,6 +108,10 @@ class MyTable extends Component {
                     <ListItem onClick={_ => this.handleEditClick(targetItem)} button>
                       <ListItemIcon><EditIcon /></ListItemIcon>
                       <ListItemText primary="Αλλαγή" />
+                    </ListItem>
+                    <ListItem onClick={this.handleDeletionAll} button>
+                      <ListItemIcon><DeleteIcon /></ListItemIcon>
+                      <ListItemText primary="Διαγραφή Όλων" />
                     </ListItem>
                   </List>
               </Dialog>

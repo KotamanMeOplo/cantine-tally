@@ -26,7 +26,17 @@ class Page extends Component {
   }
   
   render() {
-    const { classes, fields, itemSuggestions, items, totalField, handleItemDeletion, nextButton, backButton } = this.props;
+    const {
+      classes,
+      fields,
+      itemSuggestions,
+      items,
+      totalField,
+      handleItemDeletion,
+      handleDeletionAll,
+      nextButton,
+      backButton
+    } = this.props;
     const { itemToEdit } = this.state;
 
     return (
@@ -44,6 +54,7 @@ class Page extends Component {
           totalField={totalField}
           handleItemDeletion={item => handleItemDeletion(item)}
           handleItemEdit={item => this.handleItemEdit(item)}
+          handleDeletionAll={handleDeletionAll}
           dialog={true}
         />
         {backButton &&
