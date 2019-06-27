@@ -144,6 +144,7 @@ class Tally8020Page extends Component {
               onClick={_ => this.props.onChangePage(null, -1)}
             >
               <ChevronLeftIcon />
+              ΑΠΟΤΕΛΕΣΜΑ
             </Button>
           <br />
           <Button

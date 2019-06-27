@@ -55,6 +55,7 @@ class TallyResultPage extends Component {
             onClick={_ => this.props.onChangePage(-1)}
           >
             <ChevronLeftIcon />
+            ΤΑΜΕΙΟ
           </Button>
           <Button
             className={classes.buttons}
@@ -62,6 +63,7 @@ class TallyResultPage extends Component {
             color='secondary'
             onClick={_ => this.props.onChangePage(1)}
           >
+            ΚΑΤ. PARETO
             <ChevronRightIcon />
           </Button>
           <br />

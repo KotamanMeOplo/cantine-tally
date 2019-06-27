@@ -35,9 +35,19 @@ class Page extends Component {
       handleItemDeletion,
       handleDeletionAll,
       nextButton,
-      backButton
+      backButton,
+      pageIndex
     } = this.props;
     const { itemToEdit } = this.state;
+
+    const pages = [
+      'ΠΡΟΪΟΝΤΑ',
+      'ΧΡΕΩΣΤΕΣ',
+      'ΠΡΟΪΟΝΤΑ',
+      'ΧΡΕΏΣΤΕΣ',
+      'ΤΑΜΕΙΟ',
+      'ΑΠΟΤΕΛΕΣΜΑ'
+    ];
 
     return (
       <div className={classes.core}>
@@ -65,6 +75,7 @@ class Page extends Component {
             onClick={_ => this.props.onChangePage(-1)}
           >
             <ChevronLeftIcon />
+            { pages[pageIndex - 1] }
           </Button>
         }
         {nextButton &&
@@ -74,6 +85,7 @@ class Page extends Component {
             className={classes.buttons}
             onClick={_ => this.props.onChangePage(1)}
           >
+            { pages[pageIndex + 1] }
             <ChevronRightIcon />
           </Button>
         }

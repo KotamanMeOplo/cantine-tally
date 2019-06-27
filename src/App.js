@@ -136,6 +136,7 @@ class App extends Component {
               handleDeletionAll={_ => this.handleAllItemDeletion('setUpProducts')}
               onChangePage={dir => this.pageChangeHandler(null, dir)}
               nextButton={true}
+              pageIndex={0}
             />
         }
         {
@@ -148,6 +149,7 @@ class App extends Component {
               handleDeletionAll={_ => this.handleAllItemDeletion('setUpOwers')}
               onChangePage={dir => this.pageChangeHandler(null, dir)}
               backButton={true}
+              pageIndex={1}
             />
         }
         {
@@ -162,6 +164,7 @@ class App extends Component {
               totalField='total'
               onChangePage={dir => this.pageChangeHandler(null, dir)}
               nextButton={true}
+              pageIndex={2}
             />
         }
         {
@@ -177,6 +180,7 @@ class App extends Component {
               onChangePage={dir => this.pageChangeHandler(null, dir)}
               nextButton={true}
               backButton={true}
+              pageIndex={3}
             />
         }
         {
@@ -192,6 +196,7 @@ class App extends Component {
               onChangePage={dir => this.pageChangeHandler(null, dir)}
               nextButton={true}
               backButton={true}
+              pageIndex={4}
             />
         }
         {
