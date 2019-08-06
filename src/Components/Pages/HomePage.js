@@ -28,6 +28,11 @@ class HomePage extends Component {
         <Typography variant="h2" className={classes.topHeading}>
           Βοηθός ΚΨΜ
         </Typography>
+
+        <Typography variant="h6" className={classes.text}>
+            <a href="https://musing-liskov-6ae14b.netlify.com">https://musing-liskov-6ae14b.netlify.com</a>
+        </Typography>
+
         <Typography variant="h5" className={classes.subHeading}>
           Ένα εργαλείο το οποίο θα σας σώσει χρόνο στις καταμετρήσεις αλλά και στις χρεώσεις.
         </Typography>
