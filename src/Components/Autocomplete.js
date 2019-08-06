@@ -51,7 +51,7 @@ class Autocomplete extends Component {
             <Paper className={classes.paper} {...getMenuProps()}>
               {isOpen
                 ? suggestions
-                    .filter(item => inputValue && item.name.includes(inputValue))
+                    .filter(item => inputValue && item.name.toLowerCase().includes(inputValue.toLowerCase()))
                     .map((item, index) => (
                       <MenuItem
                         {...getItemProps({
